@@ -7,7 +7,7 @@ var io = require("socket.io").listen(server);
 
 io.configure(function() {
 		io.set("transports", ["websocket"]);
-		io.set("log level", 3); 
+		io.set("log level", 2); 
 });
 
 

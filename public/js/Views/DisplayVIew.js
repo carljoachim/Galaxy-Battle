@@ -25,14 +25,10 @@
 			this.model = options.model;			
 			this.el.html(this.introTemplate);
 
-			console.log("display");
-
 			Simple.Events.on("display:game-generated", this.showGameCode);			
 			Simple.Events.on("display:player-joined", this.renderPlayersList);
 			Simple.Events.on("display:start-game", this.startGame.bind(this));			
 			Simple.Events.on("display:player-move", this.playerMove.bind(this));
-
-			//Request anim frame
 		},
 
 		createGame: function(){
