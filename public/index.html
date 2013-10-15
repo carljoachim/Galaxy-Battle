@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<title>King of The Hill</title>
+		<meta charset="utf-8">
+    	<link href="css/main.css" type="text/css" rel="stylesheet">
+	 	<link href="css/controller.css" type="text/css" rel="stylesheet">
+ 	 	<link href="css/display.css" type="text/css" rel="stylesheet">
+	</head>
+	
+	<body>
+		<script src="/socket.io/socket.io.js"></script>		
+		<script src="/lib/jquery-2.0.3.js"></script>
+		<script src="/lib/mustache.js"></script>
+		<script src="/lib/simple.js"></script>
+	 	<script src="/lib/bind.js"></script>
+	 	<script src="/lib/Box2dWeb-2.1.a.3.js"></script>
+	 	<script src="/lib/boxbox.js"></script>
+		<script src="/js/Models/DisplayModel.js"></script>
+		<script src="/js/Models/ControllerModel.js"></script>
+		<script src="/js/Views/ControllerView.js"></script>
+		<script src="/js/Views/DisplayView.js"></script>
+		<h1> King of The Hill </h1>
+		<script type="text/javascript">
+			$(function(){							
+				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
+					var controllerModel = new KOTH.ControllerModel();
+					var controllerView = new KOTH.ControllerView({ el: $(".gameArea"), model: controllerModel });
+				}else{
+					var displayModel = new KOTH.DisplayModel();
+					var displayView = new KOTH.DisplayView({ el: $(".gameArea"), model: displayModel });
+				}			
+			
+			});		
+		</script>
+
+		<div class="gameArea"></div>	
+	</body>
+</html>
