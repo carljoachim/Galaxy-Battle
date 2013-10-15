@@ -11,7 +11,7 @@
 		players: [],
 		numberOfPlayers: 0,
 		initialize: function(){
-			//socket = io.connect("78.91.68.120", {port: 8080, transports: ["websocket"]});
+			//socket = io.connect("78.91.68.120", {port: 8000, transports: ["websocket"]});
 			socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
 
 			this.setEventHandlers(socket);	
