@@ -22,6 +22,7 @@
    		playersList: [],
    		objectsList: [],
    		initialize: function(options){
+   								debugger;
 			this.model = options.model;			
 			this.el.html(this.introTemplate);
 
