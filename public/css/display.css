@@ -1,3 +1,12 @@
-#gameCanvas{
-	border: 3px solid black;
+.gameArea{
+	margin-left: 20%;
 }
+#gameCanvas{
+	background: url("../img/field.jpg");
+	background-size: 108% 100%;
+	background-repeat: no-repeat;
+	background-position: -53px;	
+}
+
+
+

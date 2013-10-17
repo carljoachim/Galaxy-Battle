@@ -20,7 +20,6 @@
    		canvasEl: null,
    		world: null,
    		playersList: [],
-   		objectsList: [],
    		initialize: function(options){
 			this.model = options.model;			
 			this.el.html(this.introTemplate);
@@ -46,14 +45,96 @@
 			$(".players-status").text("Venter på " + data.NumberOfPlayersNotConnected + " spillere");
 			var playersList = $(".players-list");
 			for (var i = 0; i < data.Players.length; i++){
-				playersList.append("<h2> " + data.Players[i]  + "</h2><br>");
+				playersList.append("<h2> " + data.Players[i].SocketId  + "</h2><br>");
 			};
 
 		},
 
 		startGame:function(players){
-			this.initiateWorld();				
+			//this.initiateWorld();			
+			var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#C0C0C0', '#FFFFFF'];
+			for (var i = 0; i < players.length; i++) {
+				players[i].Color = colors[i];
+			}
+			this.initiateField(players);						
 			this.initiatePlayers(players);
+			this.initiateBall();	
+		},
+		//degree: 0,
+		initiateField: function(players){
+			this.el.html(this.gamePlayTemplate);			
+			this.canvasEl = document.getElementById("gameCanvas");
+			this.canvasEl.width = window.innerHeight;
+			this.canvasEl.height = window.innerHeight;
+			var fieldCenterScaled = this.canvasEl.height / 20;
+
+			this.world = boxbox.createWorld(this.canvasEl, {
+				scale: 10, 
+				gravity: {x: 0, y: 0}
+			});
+
+			var goalRadius = 2;
+			var coordinates = [];
+			var goals = [];
+
+			for(var i = 0; i < players.length; i++){
+				var angle = (( 2*Math.PI*i ) / players.length);
+				var coordX = fieldCenterScaled - Math.sin(angle)*(fieldCenterScaled*0.8);
+				var coordY = fieldCenterScaled - Math.cos(angle)*(fieldCenterScaled*0.8);
+				coordinates.push({x: coordX, y: coordY});
+			}
+
+			for (var i = 0; i < players.length; i++) {
+				var goal = {
+			        name: 'goal' + i,
+			        shape: 'circle',
+			        color: players[i].Color,
+			        radius: goalRadius,
+			        fixedRotation: true,
+			        friction: 9999999,
+			        density: 99999,
+			        restitution: 0,
+			        $rotation: 4
+				}
+				this.world.createEntity(goal, coordinates[i]); 
+			};
+
+			var verticalWall = {
+				name: 'wall',
+				type: 'static',
+				color: 'black',
+				height: fieldCenterScaled*2,
+				width: 2
+			}
+			this.world.createEntity(verticalWall, {x: 0, y: fieldCenterScaled}); 
+			this.world.createEntity(verticalWall, {x: fieldCenterScaled*2, y: fieldCenterScaled}); 
+
+			var horizontalWall = {
+				name: 'wall',
+				type: 'static',
+				color: 'black',
+				height: 2,
+				width: fieldCenterScaled*2
+			}
+			this.world.createEntity(horizontalWall, {x: fieldCenterScaled, y: 0}); 
+			this.world.createEntity(horizontalWall, {x: fieldCenterScaled, y: fieldCenterScaled*2}); 
+
+			var objects = this.world.find(0,0,fieldCenterScaled*2, fieldCenterScaled*2);
+			for (var i = 0; i < objects.length; i++) {
+				if(objects[i].name().substring(0,4) == 'goal'){
+					goals.push(objects[i]);
+				}
+			};
+
+			for (var i = 0; i < goals.length; i++) {
+			 	goals[i].onTick(function(){
+			 		console.log(this);
+			 		this.$rotation += 5;
+			 		this.setVelocity('rotating goal', 1, this.$rotation);
+			 		console.log(this);
+			 		
+			 	});
+			}
 		},
 		initiateWorld: function(){
 			this.el.html(this.gamePlayTemplate);			
@@ -91,16 +172,31 @@
 				}			
 			}
 		},
+		initiateBall: function(){
+			var xPos = this.canvasEl.width/20;
+			var yPos = this.canvasEl.height/20;
+			var ball = this.world.createEntity({
+						  name: "ball",
+						  shape: "circle",
+						  radius: 1,
+						  x: xPos,
+						  y: yPos,
+						  type: "dynamic",
+						  friction: 3,
+						  restitution: 0.5,
+						  image: '/img/ball.png',
+						  imageStretchToFit: true
+					});
+		},
 		initiatePlayers: function(players){
 			for(var i = 0; i < players.length; i++){		
-				var xPos = Math.round(Math.random()*((this.canvasEl.width/10) - 10));
-				var yPos = Math.round(Math.random()*((this.canvasEl.height/10) - 10));
-				var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+				var xPos = this.canvasEl.width/20;
+				var yPos = this.canvasEl.width/20;
 				var player = this.world.createEntity({
-						  name: players[i],
+						  name: players[i].SocketId,
 						  shape: "circle",
-						  radius: 2,
-						  color: randomColor,
+						  radius: 1.5,
+						  color: players[i].Color,
 						  x: xPos,
 						  y: yPos,
 						  type: "dynamic",
@@ -120,6 +216,8 @@
 				}
 			}			
 		},
+
+
 
 
 	});

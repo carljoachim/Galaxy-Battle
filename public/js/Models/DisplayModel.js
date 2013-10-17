@@ -6,8 +6,8 @@
 		players: [],
 
 		initialize: function(){
-			//socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
-			socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
+			socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
+			//socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
 			this.setEventHandlers(socket);
 			this.socketId = socket.socket.sessionid;
 
@@ -28,7 +28,8 @@
 		generateGame: function(numberOfPlayers){
 			if(this.numberOfPlayers != numberOfPlayers){
 				this.numberOfPlayers = numberOfPlayers;
-				this.gameCode = (""+Math.random()).substring(2,3);
+				//this.gameCode = (""+Math.random()).substring(2,3);
+				this.gameCode = 7;
 				Simple.Events.trigger("display:game-generated", {GameCode: this.gameCode, NumberOfPlayers: this.numberOfPlayers});		
 				socket.emit('hostNewGame', {GameCode: this.gameCode, NumberOfPlayers: this.numberOfPlayers});
 			}
@@ -45,7 +46,7 @@
 		onPlayerJoinedRoom: function(data){
 			var playersMissing = this.players.length;
 			if(this.players.length < this.numberOfPlayers){
-				this.players.push(data.SocketId);	
+				this.players.push({SocketId: data.SocketId, Color: ''});	
 				Simple.Events.trigger("display:player-joined", {Players: this.players, NumberOfPlayersNotConnected: this.numberOfPlayers-this.players.length});
 				if(this.players.length == this.numberOfPlayers){
 					Simple.Events.trigger("display:start-game", this.players);
