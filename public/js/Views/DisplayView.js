@@ -52,8 +52,6 @@
 		},
 
 		startGame:function(players){
-			//this.initiateWorld();			
-			console.log(players);
 			this.initiateField(players);						
 			this.initiatePlayers(players);
 			this.initiateBall();	
@@ -72,7 +70,7 @@
 				//collisionOutlines: true
 			});
 
-			var goalRadius = 5;
+			var goalRadius = 3;
 			var coordinates = [];
 			
 			for(var i = 0; i < players.length; i++){
@@ -83,6 +81,7 @@
 			}
 
 			for (var i = 0; i < players.length; i++) {
+				var colorStrippedForHash =  players[i].Color.replace('#','');
 				var goal = {
 			        name: 'goal' + players[i].SocketId,
 			        shape: 'circle',
@@ -91,8 +90,9 @@
 			        fixedRotation: true,
 			        friction: 9999999,
 			        density: 99999,
-			        //image: '/img/planet_blue.png',
-			        //imageStretchToFit: true,
+			        image: '/img/planets/planet' + colorStrippedForHash + '.png',
+			        imageOffsetX: -1.8,
+			        imageOffsetY: -1.8,
 			        restitution: 0,	
 			        $rotation: (90 - (360*i/players.length)),
 			        $rotationSpeed: (fieldCenterScaled*0.8*2*Math.PI)/10,
@@ -179,7 +179,7 @@
 						  shape: "circle",
 						  radius: 1,
 						  x: xPos,
-						  y: yPos,
+						  y: yPos + 10,
 						  type: "dynamic",
 						  friction: 3,
 						  restitution: 0.5,
@@ -195,6 +195,7 @@
 						Simple.Events.trigger("display:point-update", goal);
 					}else{
 						goal.destroy();
+						goal.$points = 0;
 						Simple.Events.trigger("display:point-update", goal);
 					}
 				});
@@ -204,6 +205,7 @@
 			for(var i = 0; i < players.length; i++){		
 				var xPos = this.canvasEl.width/20;
 				var yPos = this.canvasEl.width/20;
+				var colorStrippedForHash =  players[i].Color.replace('#','');
 				var player = this.world.createEntity({
 						  name: players[i].SocketId,
 						  shape: "circle",
@@ -212,8 +214,8 @@
 						  x: xPos,
 						  y: yPos,
 						  type: "dynamic",
-						  //image: '/img/space_0000FF.png',
-						  //imageStretchToFit: true,
+						  image: '/img/spacecrafts/spacecraft' + colorStrippedForHash + '.png',
+						  imageStretchToFit: true,
 						  friction: 0,
 						  restitution: 0
 					});

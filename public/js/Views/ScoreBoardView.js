@@ -28,7 +28,7 @@
         },
         updateScoreBoard: function(data){
            	var players = $(".player");
-
+           	
            	 for(var i = 0; i < players.length; i++){
            	 	if("goal" + players.eq(i).data("id") == data.name()){
            	 	    var points = data.$points;
