@@ -4,10 +4,11 @@
 		numberOfPlayers: 0,
 		socketId: null,
 		players: [],
+		colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#C0C0C0', '#FFFFFF'],
 
 		initialize: function(){
-			//socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
-			socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
+			socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
+			//socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
 			this.setEventHandlers(socket);
 			this.socketId = socket.socket.sessionid;
 
@@ -46,9 +47,12 @@
 		onPlayerJoinedRoom: function(data){
 			var playersMissing = this.players.length;
 			if(this.players.length < this.numberOfPlayers){
-				this.players.push({SocketId: data.SocketId, Color: ''});	
+				this.players.push({SocketId: data.SocketId, UserName: data.UserName});	
 				Simple.Events.trigger("display:player-joined", {Players: this.players, NumberOfPlayersNotConnected: this.numberOfPlayers-this.players.length});
 				if(this.players.length == this.numberOfPlayers){
+					for (var i = 0; i < this.players.length; i++) {
+						this.players[i].Color = this.colors[i];
+					}
 					Simple.Events.trigger("display:start-game", this.players);
 					//socket.emit('startNewGame', {GameCode: this.gameCode});
 				}

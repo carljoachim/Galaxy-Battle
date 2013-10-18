@@ -1,10 +1,40 @@
 .gameArea{
 	margin-left: 20%;
+	display: inline-block;
+	float: left;
 }
+
 #gameCanvas{
 	background: url("../img/stars.jpg");
-
 }
 
+.scoreBoardWrapper{
+	height: 100%;
+}
 
+.scoreBoard{
+	border: 2px solid black;
+	float: left;
+	height: 100%;
+	width: 20%;
+}
 
+.player{
+	height: 25px
+}
+
+.player-name{
+	float: left;	
+}
+
+.player-score-wrapper{
+	float: right;
+}
+
+.player-score{
+	height: 20px;
+	width: 20px;
+	border: 1px solid black;
+	border-radius: 50%;
+	float: left;
+}

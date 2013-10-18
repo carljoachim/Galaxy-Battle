@@ -53,10 +53,7 @@
 
 		startGame:function(players){
 			//this.initiateWorld();			
-			var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#C0C0C0', '#FFFFFF'];
-			for (var i = 0; i < players.length; i++) {
-				players[i].Color = colors[i];
-			}
+			console.log(players);
 			this.initiateField(players);						
 			this.initiatePlayers(players);
 			this.initiateBall();	
@@ -72,9 +69,10 @@
 			this.world = boxbox.createWorld(this.canvasEl, {
 				scale: 10, 
 				gravity: {x: 0, y: 0}
+				//collisionOutlines: true
 			});
 
-			var goalRadius = 2;
+			var goalRadius = 5;
 			var coordinates = [];
 			
 			for(var i = 0; i < players.length; i++){
@@ -86,13 +84,15 @@
 
 			for (var i = 0; i < players.length; i++) {
 				var goal = {
-			        name: 'goal' + i,
+			        name: 'goal' + players[i].SocketId,
 			        shape: 'circle',
 			        color: players[i].Color,
 			        radius: goalRadius,
 			        fixedRotation: true,
 			        friction: 9999999,
 			        density: 99999,
+			        //image: '/img/planet_blue.png',
+			        //imageStretchToFit: true,
 			        restitution: 0,	
 			        $rotation: (90 - (360*i/players.length)),
 			        $rotationSpeed: (fieldCenterScaled*0.8*2*Math.PI)/10,
@@ -190,11 +190,12 @@
 			for(var i = 0; i < this.goals.length; i++){
 				var goal = this.goals[i];
 				ball.onStartContact(function(goal){
-					console.log(goal);
 					if(goal.$points != 1){
 						goal.$points -= 1;
+						Simple.Events.trigger("display:point-update", goal);
 					}else{
 						goal.destroy();
+						Simple.Events.trigger("display:point-update", goal);
 					}
 				});
 			}
@@ -206,11 +207,13 @@
 				var player = this.world.createEntity({
 						  name: players[i].SocketId,
 						  shape: "circle",
-						  radius: 1.5,
+						  radius: 2,
 						  color: players[i].Color,
 						  x: xPos,
 						  y: yPos,
 						  type: "dynamic",
+						  //image: '/img/space_0000FF.png',
+						  //imageStretchToFit: true,
 						  friction: 0,
 						  restitution: 0
 					});
