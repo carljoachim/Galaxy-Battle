@@ -20,6 +20,7 @@
    		canvasEl: null,
    		world: null,
    		playersList: [],
+   		goals: [],
    		initialize: function(options){
 			this.model = options.model;			
 			this.el.html(this.introTemplate);
@@ -75,8 +76,7 @@
 
 			var goalRadius = 2;
 			var coordinates = [];
-			var goals = [];
-
+			
 			for(var i = 0; i < players.length; i++){
 				var angle = (( 2*Math.PI*i ) / players.length);
 				var coordX = fieldCenterScaled - Math.sin(angle)*(fieldCenterScaled*0.8);
@@ -93,8 +93,10 @@
 			        fixedRotation: true,
 			        friction: 9999999,
 			        density: 99999,
-			        restitution: 0,
-			        $rotation: 4
+			        restitution: 0,	
+			        $rotation: (90 - (360*i/players.length)),
+			        $rotationSpeed: (fieldCenterScaled*0.8*2*Math.PI)/10,
+			        $points: 3
 				}
 				this.world.createEntity(goal, coordinates[i]); 
 			};
@@ -122,17 +124,14 @@
 			var objects = this.world.find(0,0,fieldCenterScaled*2, fieldCenterScaled*2);
 			for (var i = 0; i < objects.length; i++) {
 				if(objects[i].name().substring(0,4) == 'goal'){
-					goals.push(objects[i]);
+					this.goals.push(objects[i]);
 				}
 			};
 
-			for (var i = 0; i < goals.length; i++) {
-			 	goals[i].onTick(function(){
-			 		console.log(this);
-			 		this.$rotation += 5;
-			 		this.setVelocity('rotating goal', 1, this.$rotation);
-			 		console.log(this);
-			 		
+			for (var i = 0; i < this.goals.length; i++) {
+			 	this.goals[i].onTick(function(){			
+			 		this.setVelocity('rotating goal', this.$rotationSpeed, this.$rotation);			 		
+			 		this.$rotation += 1.8;		 				 		
 			 	});
 			}
 		},
@@ -184,9 +183,21 @@
 						  type: "dynamic",
 						  friction: 3,
 						  restitution: 0.5,
-						  image: '/img/ball.png',
+						  image: '/img/mario_star.png',
 						  imageStretchToFit: true
 					});
+
+			for(var i = 0; i < this.goals.length; i++){
+				var goal = this.goals[i];
+				ball.onStartContact(function(goal){
+					console.log(goal);
+					if(goal.$points != 1){
+						goal.$points -= 1;
+					}else{
+						goal.destroy();
+					}
+				});
+			}
 		},
 		initiatePlayers: function(players){
 			for(var i = 0; i < players.length; i++){		
@@ -207,7 +218,6 @@
 			}	
 			Simple.Events.trigger("display:players-created", this.playersList);
 		},
-
 		playerMove: function(data){
 			for(var i = 0; i < this.playersList.length; i++){
 				if(this.playersList[i].name() == data.PlayerId){
@@ -215,10 +225,7 @@
 					//this.playersList[i].setForce("player power", data.Hypotenus*50, data.Angle );
 				}
 			}			
-		},
-
-
-
+		}
 
 	});
 })(window.KOTH = window.KOTH || {}, Mustache);
