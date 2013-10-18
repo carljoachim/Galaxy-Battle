@@ -96,7 +96,7 @@
 			        restitution: 0,	
 			        $rotation: (90 - (360*i/players.length)),
 			        $rotationSpeed: (fieldCenterScaled*0.8*2*Math.PI)/10,
-			        $points: 3
+			        $points: 5
 				}
 				this.world.createEntity(goal, coordinates[i]); 
 			};

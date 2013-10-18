@@ -22,13 +22,15 @@
         					"<div class='player-score' data-id=" + this.model.players[i].SocketId +  " data-score-count=0 style='background-color:" + this.model.players[i].Color + "'></div>" +
         					"<div class='player-score' data-id=" + this.model.players[i].SocketId +  " data-score-count=1 style='background-color:" + this.model.players[i].Color + "'></div>" +
         					"<div class='player-score' data-id=" + this.model.players[i].SocketId +  " data-score-count=2 style='background-color:" + this.model.players[i].Color + "'></div>" +
+        					"<div class='player-score' data-id=" + this.model.players[i].SocketId +  " data-score-count=3 style='background-color:" + this.model.players[i].Color + "'></div>" +
+        					"<div class='player-score' data-id=" + this.model.players[i].SocketId +  " data-score-count=4 style='background-color:" + this.model.players[i].Color + "'></div>" +
         				"</div>" + 
         			"</div>");
         	};
         },
         updateScoreBoard: function(data){
            	var players = $(".player");
-           	
+
            	 for(var i = 0; i < players.length; i++){
            	 	if("goal" + players.eq(i).data("id") == data.name()){
            	 	    var points = data.$points;
