@@ -6,8 +6,8 @@
 		players: [],
 
 		initialize: function(){
-			socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
-			//socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
+			//socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
+			socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
 			this.setEventHandlers(socket);
 			this.socketId = socket.socket.sessionid;
 
