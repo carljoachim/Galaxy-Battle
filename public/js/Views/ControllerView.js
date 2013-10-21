@@ -20,7 +20,7 @@
 			Simple.Events.on("controller:joined-room", this.joiningRoom);
 			Simple.Events.on("controller:player-init", this.setPlayerSettings.bind(this));
 			
-			document.getElementsByTagName('head')[0].innerHTML += '<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, width=device-width" />';			
+			document.getElementsByTagName('head')[0].innerHTML += '<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />';			
 			document.getElementsByTagName('head')[0].innerHTML += '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />';
 	
 		},
