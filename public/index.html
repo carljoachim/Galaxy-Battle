@@ -26,12 +26,12 @@
 		<script type="text/javascript">
 			$(function(){							
 				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
-					var controllerModel = new KOTH.ControllerModel();
-					var controllerView = new KOTH.ControllerView({ el: $(".gameArea"), model: controllerModel });
+					var controllerModel = new GB.ControllerModel();
+					var controllerView = new GB.ControllerView({ el: $(".gameArea"), model: controllerModel });
 				}else{
-					var displayModel = new KOTH.DisplayModel();
-					var displayView = new KOTH.DisplayView({ el: $(".gameArea"), model: displayModel });
-					var scoreBoardView = new KOTH.ScoreBoardView({ el: $(".scoreBoardWrapper"), model: displayModel });
+					var displayModel = new GB.DisplayModel();
+					var displayView = new GB.DisplayView({ el: $(".gameArea"), model: displayModel });
+					var scoreBoardView = new GB.ScoreBoardView({ el: $(".scoreBoardWrapper"), model: displayModel });
 				}			
 		
 			});		
