@@ -1,7 +1,6 @@
 .gameArea{
-	margin-left: 20%;
-	display: inline-block;
-	float: left;
+	/*display: inline-block;
+	float: left;*/
 }
 
 #gameCanvas{

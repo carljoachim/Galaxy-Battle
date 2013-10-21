@@ -2,10 +2,11 @@
 	GB.ControllerView = Simple.View.extend({
 		introTemplate: 
 			"<div class='mobile-join-game-info'>" + 
-				"Navn: <input type='text' id='name' value='Spiller'> <br>" +
-				"Kode: <input type='text' id='game-code'> <br>" +
-				"<button id='start-game-button'> Start game</button>" +
-				"<h1 class='error-message'>...</h1>" +
+				"<h3 class='header-mobile'> Galaxy Battle </h3>" + 
+				"<p> Name: <input type='text' id='name' value='Player'> <br>" +
+				"<p> Code: <input type='text' id='game-code'> <br>" +
+				"</br><button id='start-game-button'> Start game</button>" +
+				"</br></br><div class='error-message'></div>" +
 			"</div>",
 		gameTemplate:
 			"<div class='controller-game-play-wrapper'></div>",
@@ -26,10 +27,10 @@
 
 		},
 		errorJoiningRoom: function(){
-			$(".error-message").html("Dette var feil kode");
+			$(".error-message").html("Wrong code..");
 		},
 		joiningRoom: function(){
-			$(".error-message").html("Dette var riktig kode!");
+			$(".error-message").html("Correct code! Waiting for other players");
 			Simple.Events.trigger("controller:")
 		},
 		setPlayerSettings: function(data){

@@ -5,15 +5,23 @@
         },
 		introTemplate: 
 		  "<div class='display-new-game-info'> "+
-		     "<h3> Velkommen til King of The Hill </h3>" +
-   		  	 "<p> - Plukk opp din smart telefon </p>" +
-   		  	 "Velg antall spillere <input id='num-of-players' type='number' min='1' max='8' value='1' >" +
-   		  	 "<button id='generate-game'> Generer spill </button>" + 
-   		     "<p> - Gå inn på 23.23.323.12 på din mobil og skriv inn koden</p>" +
+		     "<h3 class='header'> Galaxy Battle </h3>" +
+   		  	 "Grab your phone <br><br> " +
+   		  	 "Choose number of players <br> <input id='num-of-players' type='number' min='1' max='8' value='2' > <br>" +
+   		  	 "<button id='generate-game'> Generate game </button>" + 
+   		     "<p> - Go to 23.23.323.12 on your phone and type the generated code</p>" +
    		     "<h1 class='game-code'></h1><br>" +
    		     "<div class='players-status'></div>" +
    		     "<div class='players-list'></div>" +
-   		  "</div>",
+   		  "</div>" + 	
+	   		  "<div class='planet-image planet-green'></div>" +
+	   		  "<div class='planet-image planet-red'></div>" +
+		      "<div class='planet-image planet-blue'></div>" +
+	          "<div class='planet-image planet-yellow'></div>" +
+		      "<div class='planet-image planet-grey'></div>" +
+		      "<div class='planet-image planet-white'></div>" +
+              "<div class='planet-image planet-lightblue'></div>",
+
 		gamePlayTemplate:
    		   "<div class='game-wrapper'><canvas id='gameCanvas'></canvas></div>",
    		canvasWrapper: null,
@@ -38,15 +46,16 @@
 
 		showGameCode: function(data){
 			$(".game-code").html(data.GameCode);
-			$(".players-status").text("Venter på " + data.NumberOfPlayers + " spillere");
+			$(".players-status").text("Waiting for " + data.NumberOfPlayers + " player(s)");
 		},
 
 		renderPlayersList: function(data){
+			console.log(data);
 			$(".players-list").empty();
-			$(".players-status").text("Venter på " + data.NumberOfPlayersNotConnected + " spillere");
+			$(".players-status").text("Waiting for " + data.NumberOfPlayersNotConnected + " player(s)");
 			var playersList = $(".players-list");
 			for (var i = 0; i < data.Players.length; i++){
-				playersList.append("<h2> " + data.Players[i].SocketId  + "</h2><br>");
+				playersList.append("<h2> " + data.Players[i].UserName  + "</h2><br>");
 			};
 
 		},
