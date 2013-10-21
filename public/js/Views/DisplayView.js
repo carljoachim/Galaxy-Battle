@@ -1,5 +1,5 @@
-(function(KOTH, Mustache){
-	KOTH.DisplayView = Simple.View.extend({
+(function(GB, Mustache){
+	GB.DisplayView = Simple.View.extend({
 		events: {
             "click #generate-game": "createGame",       
         },
@@ -233,4 +233,4 @@
 		}
 
 	});
-})(window.KOTH = window.KOTH || {}, Mustache);
+})(window.GB = window.GB || {}, Mustache);

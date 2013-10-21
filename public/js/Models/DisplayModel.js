@@ -1,5 +1,5 @@
-(function(KOTH){
-	KOTH.DisplayModel = Simple.Model.extend({
+(function(GB){
+	GB.DisplayModel = Simple.Model.extend({
 		gameCode: null,
 		numberOfPlayers: 0,
 		socketId: null,
@@ -30,8 +30,8 @@
 		generateGame: function(numberOfPlayers){
 			if(this.numberOfPlayers != numberOfPlayers){
 				this.numberOfPlayers = numberOfPlayers;
-				//this.gameCode = (""+Math.random()).substring(2,3);
-				this.gameCode = 7;
+				this.gameCode = (""+Math.random()).substring(2,5);
+				//this.gameCode = 7;
 				Simple.Events.trigger("display:game-generated", {GameCode: this.gameCode, NumberOfPlayers: this.numberOfPlayers});		
 				socket.emit('hostNewGame', {GameCode: this.gameCode, NumberOfPlayers: this.numberOfPlayers});
 			}
@@ -61,4 +61,4 @@
 		}
 
 	});	
-})(window.KOTH = window.KOTH || {});
+})(window.GB = window.GB || {});

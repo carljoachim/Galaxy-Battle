@@ -1,10 +1,10 @@
-(function(KOTH, Mustache){
-	KOTH.ScoreBoardView = Simple.View.extend({
+(function(GB, Mustache){
+	GB.ScoreBoardView = Simple.View.extend({
 		events: {
 
         },
         scoreBoardTemplate: "<div class='scoreBoard'> " +
-        					"<h1> Score Board </h1>" +    					
+        					"<h1> Score Board</h1>" +    					
         					"</div>",
 
         initialize: function(options){       	
@@ -46,4 +46,4 @@
            	  
 
 	});
-})(window.KOTH = window.KOTH || {}, Mustache);
+})(window.GB = window.GB || {}, Mustache);

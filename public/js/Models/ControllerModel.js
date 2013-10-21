@@ -1,5 +1,5 @@
-(function(KOTH){
-	KOTH.ControllerModel = Simple.Model.extend({
+(function(GB){
+	GB.ControllerModel = Simple.Model.extend({
 		gameCode: null,
 		playerName: null,
 		gameStarted: false,
@@ -84,4 +84,4 @@
 			}
 		}	
 	});
-})(window.KOTH = window.KOTH || {});		
+})(window.GB = window.GB || {});		

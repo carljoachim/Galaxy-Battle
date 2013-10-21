@@ -1,5 +1,5 @@
-(function(KOTH, Mustache){
-	KOTH.ControllerView = Simple.View.extend({
+(function(GB, Mustache){
+	GB.ControllerView = Simple.View.extend({
 		introTemplate: 
 			"<div class='mobile-join-game-info'>" + 
 				"Navn: <input type='text' id='name' value='Spiller'> <br>" +
@@ -45,4 +45,4 @@
 		}
 
 	});
-})(window.KOTH = window.KOTH || {}, Mustache);
+})(window.GB = window.GB || {}, Mustache);
