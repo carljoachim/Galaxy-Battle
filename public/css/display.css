@@ -1,25 +1,38 @@
 .gameArea{
-	/*display: inline-block;
-	float: left;*/
+	/*display: inline-block; */
+	float: left;
 }
 
 #gameCanvas{
 	background: url("../img/stars.jpg");
+	border: 1px #F5F5DC solid;
 }
 
+
 .scoreBoardWrapper{
-	height: 100%;
+	width: 40%;
+	float: left;
+	height: 150%;
+}
+
+.score-board-header{
+	font-size: 30px;
+	font-family: galaxyFont;
+	color: #F5F5DC;
 }
 
 .scoreBoard{
-	border: 2px solid black;
-	float: left;
+	color: #F5F5DC;
+	margin-left: 30px;
+	background-color: black;
 	height: 100%;
-	width: 20%;
 }
 
 .player{
-	height: 25px
+	height: 48px;
+	font-size: 24px;
+	font-family: galaxyFont;
+
 }
 
 .player-name{
@@ -27,13 +40,14 @@
 }
 
 .player-score-wrapper{
-	float: right;
+	float: left;
+	margin-left: 60%;
 }
 
 .player-score{
 	height: 20px;
 	width: 20px;
-	border: 1px solid black;
+	border: 1px solid white;
 	border-radius: 50%;
 	float: left;
 }

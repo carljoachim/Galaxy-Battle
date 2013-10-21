@@ -6,10 +6,10 @@
 		introTemplate: 
 		  "<div class='display-new-game-info'> "+
 		     "<h3 class='header'> Galaxy Battle </h3>" +
-   		  	 "Grab your phone <br><br> " +
-   		  	 "Choose number of players <br> <input id='num-of-players' type='number' min='1' max='8' value='2' > <br>" +
-   		  	 "<button id='generate-game'> Generate game </button>" + 
-   		     "<p> - Go to 23.23.323.12 on your phone and type the generated code</p>" +
+   		  	 "Choose the number of players </br></br> <input id='num-of-players' type='number' min='1' max='8' value='1' >" +
+   		  	 "<button id='generate-game'> Generate game </button> </br></br>" + 
+   		  	 "Grab your phone <br><br> " +	
+   		     "Go to </br></br> www.galaxybattle.org </br></br> on your phone type, the generated code and defend your planet!" +
    		     "<h1 class='game-code'></h1><br>" +
    		     "<div class='players-status'></div>" +
    		     "<div class='players-list'></div>" +
@@ -50,12 +50,11 @@
 		},
 
 		renderPlayersList: function(data){
-			console.log(data);
 			$(".players-list").empty();
 			$(".players-status").text("Waiting for " + data.NumberOfPlayersNotConnected + " player(s)");
 			var playersList = $(".players-list");
 			for (var i = 0; i < data.Players.length; i++){
-				playersList.append("<h2> " + data.Players[i].UserName  + "</h2><br>");
+				playersList.append("<h4> " + data.Players[i].UserName  + "</h4><br>");
 			};
 
 		},
@@ -65,12 +64,11 @@
 			this.initiatePlayers(players);
 			this.initiateBall();	
 		},
-		//degree: 0,
 		initiateField: function(players){
 			this.el.html(this.gamePlayTemplate);			
 			this.canvasEl = document.getElementById("gameCanvas");
-			this.canvasEl.width = window.innerHeight;
-			this.canvasEl.height = window.innerHeight;
+			this.canvasEl.width = window.innerHeight * 0.98;
+			this.canvasEl.height = window.innerHeight * 0.98;
 			var fieldCenterScaled = this.canvasEl.height / 20;
 
 			this.world = boxbox.createWorld(this.canvasEl, {

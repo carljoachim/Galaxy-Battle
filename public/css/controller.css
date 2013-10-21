@@ -1,5 +1,6 @@
 .controller-game-play-wrapper{
-	height: 100px;
-	width: 100px;
-	border: 1px solid black;
+	height: 140px;
+	width: 140px;
+	margin-left: 50%;
+	margin-top: 50%;
 }

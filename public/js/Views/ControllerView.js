@@ -3,8 +3,8 @@
 		introTemplate: 
 			"<div class='mobile-join-game-info'>" + 
 				"<h3 class='header-mobile'> Galaxy Battle </h3>" + 
-				"<p> Name: <input type='text' id='name' value='Player'> <br>" +
-				"<p> Code: <input type='text' id='game-code'> <br>" +
+				"<p> Name </br> <input type='text' id='name' value='Player'> </br>" +
+				"<p> Game Code </br> <input type='text' id='game-code'> <br>" +
 				"</br><button id='start-game-button'> Start game</button>" +
 				"</br></br><div class='error-message'></div>" +
 			"</div>",
@@ -19,6 +19,10 @@
 			Simple.Events.on("controller:error-joining-room", this.errorJoiningRoom);			
 			Simple.Events.on("controller:joined-room", this.joiningRoom);
 			Simple.Events.on("controller:player-init", this.setPlayerSettings.bind(this));
+			
+			document.getElementsByTagName('head')[0].innerHTML += '<meta name="viewport" content="width=device-width, user-scalable=false;">';			
+			document.getElementsByTagName('head')[0].innerHTML += '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />';
+	
 		},
 		startGame: function(){
 			var code = $("#game-code").val();
@@ -30,7 +34,7 @@
 			$(".error-message").html("Wrong code..");
 		},
 		joiningRoom: function(){
-			$(".error-message").html("Correct code! Waiting for other players");
+			$(".error-message").html("Correct code:) </br></br> Waiting for other players..");
 			Simple.Events.trigger("controller:")
 		},
 		setPlayerSettings: function(data){
@@ -38,7 +42,7 @@
 			this.el.html(html);
 			for(var i = 0; i < data.length; i++){
 				if(data[i].PlayerId == data[i].SocketId){
-					this.el.find(".controller-game-play-wrapper").css("background-color", data[i].PlayerColor);
+					this.el.find(".controller-game-play-wrapper").css("background", "url(../img/spacecrafts/spacecraft" + data[i].PlayerColor.replace('#','') + ".png) no-repeat");
 				}
 		
 			}

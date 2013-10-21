@@ -4,7 +4,7 @@
 
         },
         scoreBoardTemplate: "<div class='scoreBoard'> " +
-        					"<h1> Score Board</h1>" +    					
+        					"<h1 class='header'> Galaxy Battle </h1> <br> " + 					
         					"</div>",
 
         initialize: function(options){       	
