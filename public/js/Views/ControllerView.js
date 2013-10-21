@@ -20,8 +20,8 @@
 			Simple.Events.on("controller:joined-room", this.joiningRoom);
 			Simple.Events.on("controller:player-init", this.setPlayerSettings.bind(this));
 			
-			$('head').append('<meta name="viewport" content="user-scalable=0, initial-scale=1.0, maximum-scale=1.0, width=device-width" />');
-			$('head').append('<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />');
+			$('head').append('<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />');
+			$('head').append('<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent;" />');
 	
 		},
 		startGame: function(){
