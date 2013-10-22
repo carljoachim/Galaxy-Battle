@@ -34,7 +34,6 @@
 			this.playerId = socket.socket.sessionid;
 			socket.emit('joinNewGame', data);
 		},
-
 		setPlayerSettings: function(data){
 			this.gameStarted = true;
 			this.players.push(data);
@@ -46,37 +45,15 @@
 				Simple.Events.trigger("controller:player-init", this.players);	
 			}
 		},
-		onDeviceMotion: function(e){
-			if (this.gameStarted) {
-				
-				this.sensors.x = (e.accelerationIncludingGravity.x); 
-			    this.sensors.y = (e.accelerationIncludingGravity.y);
-			   
-			    var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
-	
-				if (landscapeOrientation) {
-					this.vx = this.vx + this.sensors.y * 5;
-					this.vy = this.vy + this.sensors.x * 5;
-				} else {
-					this.vy = this.vy - this.sensors.y * 5;	
-					this.vx = this.vx + this.sensors.x * 5;
-				}	
-			
-				this.x = Math.round(this.x + ((this.vx * 0.98) / 180));
-				this.y = Math.round(this.y + ((this.vy * 0.98) / 180));
-
-			    socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, X: this.x, Y: this.y});
-			}
-		},
 		onDeviceOrientation: function(event){
 			if (this.gameStarted) {
 				var rotationGamma = event.gamma; 
 				var rotationBeta = event.beta;
 				var arctan = Math.atan2(rotationGamma, -rotationBeta);
 				var hypotenus = Math.sqrt((rotationBeta*rotationBeta) + (rotationGamma*rotationGamma));
-				//var fixedHyp = Math.pow((hypotenus/10),2);
-
+			
 				var angle = (arctan/Math.PI)*180;
+				angle += 90; // for sidelengs spillings
 				if(angle < 0){
 					angle = 360 + angle;
 				}

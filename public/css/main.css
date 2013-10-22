@@ -52,6 +52,7 @@ p{
 	margin-right: 40px; 
 	opacity: 0.3;
 	margin-top: 60px;
+	overflow: hidden;
 
 }
 .planet-image.planet-green{
