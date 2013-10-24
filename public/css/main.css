@@ -87,5 +87,16 @@ p{
 	   /	/red,    green        blue      yellow   lightblue    rose       grey       white
 colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#C0C0C0', '#FFFFFF'],
 */
+.winner-banner{
+	color: #F5F5DC;
+	position: fixed;
+	top: 35%;
+	left: 50%;
+	font-size: 60px;
+	margin-left: -27%;
+	font-family: galaxyFont;
+	text-align: center;
+	text-shadow: 0 0 73px brown;
+	background-color: black;
 
-
+}

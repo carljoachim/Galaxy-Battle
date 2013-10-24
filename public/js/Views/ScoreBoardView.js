@@ -32,7 +32,7 @@
            	var players = $(".player");
 
            	 for(var i = 0; i < players.length; i++){
-           	 	if("goal" + players.eq(i).data("id") == data.name()){
+           	 	if("planet" + players.eq(i).data("id") == data.name()){
            	 	    var points = data.$points;
            	 	   	var playerScores = players.eq(i).find(".player-score");
            	 	   	for(var j = 0; j < playerScores.length; j++){
