@@ -8,8 +8,8 @@
 		colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#C0C0C0', '#FFFFFF'],
 
 		initialize: function(){
-			socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
-			//socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
+			//socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
+			socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
 			
 			this.setEventHandlers(socket);
 			this.socketId = socket.socket.sessionid;
