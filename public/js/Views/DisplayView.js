@@ -6,7 +6,7 @@
 		introTemplate: 
 		  "<div class='display-new-game-info'> "+
 		     "<h3 class='header'> Galaxy Battle </h3>" +
-   		  	 "Choose the number of players </br></br> <input id='num-of-players' type='number' min='1' max='8' value='1' >" +
+   		  	 "Choose the number of players </br></br> <input id='num-of-players' type='number' min='2' max='8' value='2' >" +
    		  	 "<button id='generate-game'> Generate game </button> </br></br>" + 
    		  	 "Grab your phone <br><br> " +	
    		     "Go to </br></br> www.galaxybattle.org </br></br> on your phone type, the generated code and defend your planet!" +
