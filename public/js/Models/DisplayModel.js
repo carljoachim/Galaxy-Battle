@@ -31,8 +31,8 @@
 		generateGame: function(numberOfPlayers){
 			if(this.numberOfPlayers != numberOfPlayers){
 				this.numberOfPlayers = numberOfPlayers;
-				//this.gameCode = (""+Math.random()).substring(2,5);
-				this.gameCode = 7;
+				this.gameCode = (""+Math.random()).substring(2,4);
+				//this.gameCode = 7;
 				Simple.Events.trigger("display:game-generated", {GameCode: this.gameCode, NumberOfPlayers: this.numberOfPlayers});		
 				socket.emit('hostNewGame', {GameCode: this.gameCode, NumberOfPlayers: this.numberOfPlayers});
 			}
