@@ -6,7 +6,7 @@ var server = require('http').createServer(app).listen(8000);
 var io = require("socket.io").listen(server);
 
 io.configure(function() {
-		io.set("transports", ["websocket"]);
+		io.set("transports", ["xhr-polling"]);
 		io.set("log level", 2); 
 });
 
