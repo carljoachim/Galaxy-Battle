@@ -13,7 +13,7 @@
 		initialize: function(){
 			//socket = io.connect("192.168.1.4", {port: 8000, transports: ["websocket"]});
 			//socket = io.connect("78.91.70.204", {port: 8000, transports: ["websocket"]});
-			socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
+			socket = io.connect("ec2-54-229-160-210.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
 			
 			this.setEventHandlers(socket);	
 
@@ -47,9 +47,9 @@
 		},
 		onDeviceOrientation: function(event){
 			if (this.gameStarted) {
-				var rotationGamma = event.gamma; 
-				var rotationBeta = event.beta;
-				var arctan = Math.atan2(rotationGamma, -rotationBeta);
+				var rotationGamma = (event.gamma/180)*Math.PI; 
+				var rotationBeta = -(event.beta/180)*Math.PI;
+				/*var arctan = Math.atan2(rotationGamma, -rotationBeta);
 				var hypotenus = Math.sqrt((rotationBeta*rotationBeta) + (rotationGamma*rotationGamma));
 			
 				var angle = (arctan/Math.PI)*180;
@@ -62,7 +62,29 @@
 				hypotenus = hypotenus.toPrecision(3);
 				
 				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Angle: angle, Hypotenus: hypotenus});
+			*/
+
+
 				
+				var teta = Math.atan2(-Math.sin(rotationBeta)*Math.cos(rotationGamma), Math.sin(rotationGamma));
+				var hypotenus = Math.sqrt((Math.sin(rotationGamma)*Math.sin(rotationGamma)) + (Math.sin(rotationBeta)*Math.cos(rotationGamma)*Math.sin(rotationBeta)*Math.cos(rotationGamma)));
+
+				var angle = (teta/Math.PI)*180;
+				angle += 180; // for sidelengs spillings
+				if(angle < 0){
+					angle = 360 + angle;
+				}
+
+
+
+
+				angle = angle.toPrecision(4);
+				hypotenus = hypotenus.toPrecision(3)*30;
+				
+				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Angle: angle, Hypotenus: hypotenus});
+				
+
+
 			}
 		}	
 	});
