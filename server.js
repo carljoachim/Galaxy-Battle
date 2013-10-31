@@ -6,7 +6,7 @@ var server = require('http').createServer(app).listen(8000);
 var io = require("socket.io").listen(server);
 
 io.configure(function() {
-		io.set("transports", ["xhr-polling"]);
+		io.set("transports", ["websocket"]);
 		io.set("log level", 2); 
 });
 
@@ -24,6 +24,8 @@ function setEventHandlers(socket){
 	//socket.on("startNewGame", onStartNewGame);
 	socket.on("movePlayer", onMovePlayer);
 	socket.on("playerCreated", onPlayerCreated);
+
+	socket.on("test", function(){console.log("test")});
 }
 
 function onHostNewGame(data){

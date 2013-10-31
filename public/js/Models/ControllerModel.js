@@ -12,7 +12,7 @@
 		numberOfPlayers: 0,
 		initialize: function(){
 			//socket = io.connect("192.168.1.4", {port: 8000, transports: ["websocket"]});
-			//socket = io.connect("78.91.71.40", {port: 8000, transports: ["xhr-polling"]});
+			//socket = io.connect("78.91.70.204", {port: 8000, transports: ["websocket"]});
 			socket = io.connect("http://ec2-54-229-164-44.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["xhr-polling"]});
 			
 			this.setEventHandlers(socket);	
@@ -60,8 +60,9 @@
 
 				angle = angle.toPrecision(4);
 				hypotenus = hypotenus.toPrecision(3);
-
+				
 				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Angle: angle, Hypotenus: hypotenus});
+				
 			}
 		}	
 	});

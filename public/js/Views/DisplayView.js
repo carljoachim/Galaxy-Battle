@@ -8,19 +8,12 @@
 		     "<h3 class='header'> Galaxy Battle </h3>" +
    		  	 "Choose the number of players </br></br> <input id='num-of-players' type='number' min='2' max='8' value='2' >" +
    		  	 "<button id='generate-game'> Generate game </button> </br></br>" + 
-   		  	 "Grab your phone <br><br> " +	
-   		     "Go to </br></br> www.galaxybattle.org </br></br> on your phone type, the generated code and defend your planet!" +
+   		  	 "Grab your phone. <br><br> " +	
+   		     "Go to </br></br> www.galaxybattle.org </br></br> on your phone and type in the generated code. </br> </br> Get ready to defend your planet!" +
    		     "<h1 class='game-code'></h1><br>" +
    		     "<div class='players-status'></div>" +
    		     "<div class='players-list'></div>" +
-   		  "</div>" + 	
-	   		  "<div class='planet-image planet-green'></div>" +
-	   		  "<div class='planet-image planet-red'></div>" +
-		      "<div class='planet-image planet-blue'></div>" +
-	          "<div class='planet-image planet-yellow'></div>" +
-		      "<div class='planet-image planet-grey'></div>" +
-		      "<div class='planet-image planet-white'></div>" +
-              "<div class='planet-image planet-lightblue'></div>",
+   		  "</div>",
 
 		gamePlayTemplate:
    		   "<div class='game-wrapper'><canvas id='gameCanvas'></canvas></div>",
@@ -40,6 +33,7 @@
 			Simple.Events.on("display:player-move", this.playerMove.bind(this));
 			Simple.Events.on("display:is-game-over", this.isGameOver.bind(this));
 			Simple.Events.on("display:announce-winner", this.announceWinner.bind(this));
+			Simple.Events.on("display:planet-hit", this.updatePlanet.bind(this));
 		},
 
 		createGame: function(){
@@ -59,7 +53,6 @@
 			for (var i = 0; i < data.Players.length; i++){
 				playersList.append("<h4> " + data.Players[i].UserName  + "</h4><br>");
 			};
-
 		},
 
 		startGame:function(players){
@@ -107,7 +100,9 @@
 			        $rotation: (90 - (360*i/players.length)),
 			        $rotationSpeed: (fieldCenterScaled*0.8*2*Math.PI)/10,
 			        $points: 5,
-			        $playerName: players[i].UserName
+			        $playerName: players[i].UserName,
+			        $type: 'planet',
+			        $color: colorStrippedForHash
 				}
 				this.world.createEntity(planet, coordinates[i]); 
 			};
@@ -188,7 +183,7 @@
 			var star = this.world.createEntity({
 						  name: "star",
 						  shape: "circle",
-						  radius: 1,
+						  radius: 1.2,
 						  x: xPos,
 						  y: yPos + 10,
 						  type: "dynamic",
@@ -203,7 +198,8 @@
 				star.onStartContact(function(planet){
 					if(planet.$points != 1){
 						planet.$points -= 1;
-						Simple.Events.trigger("display:point-update", planet);
+						Simple.Events.trigger("display:point-update", planet);						
+						Simple.Events.trigger("display:planet-hit", planet);
 					}else{
 						planet.destroy();
 						planet.$points = 0;
@@ -211,6 +207,8 @@
 						Simple.Events.trigger("display:point-update", planet);
 					}
 				});
+
+
 			}
 		},
 		initiatePlayers: function(players){
@@ -236,11 +234,17 @@
 			Simple.Events.trigger("display:players-created", this.playersList);
 		},
 		playerMove: function(data){
+			
 			for(var i = 0; i < this.playersList.length; i++){
 				if(this.playersList[i].name() == data.PlayerId){
 					this.playersList[i].setVelocity("player move", data.Hypotenus, data.Angle);
 				}
 			}			
+		},
+		updatePlanet: function(planet){
+			if(planet.$type == 'planet'){
+				planet.image('/img/planets/planet' + planet.$color + 'hit' + planet.$points + '.png');
+			}
 		},
 		isGameOver: function(planet){
 			var planetIndex = this.planetsRemaining.indexOf(planet);

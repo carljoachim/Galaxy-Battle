@@ -1,6 +1,6 @@
 html, body {
     height: 80%;
-	background: url("../img/stars.jpg");
+	background-color: black;
 }
 @font-face {
 	font-family: galaxyFont;
@@ -24,6 +24,7 @@ p{
 	text-align: center;
 	margin: auto;
 	font-size: 20px;
+	border: dashed;
 }
 
 .header{
@@ -54,34 +55,6 @@ p{
 	margin-top: 60px;
 	overflow: hidden;
 
-}
-.planet-image.planet-green{
-	background: url("../img/planets/planet00FF00.png") no-repeat;
-	background-size: 50%;
-}
-.planet-image.planet-red{
-	background: url("../img/planets/planetFF0000.png") no-repeat;
-	background-size: 50%;
-}
-.planet-image.planet-blue{
-	background: url("../img/planets/planet0000FF.png") no-repeat;
-	background-size: 50%;
-}
-.planet-image.planet-yellow{
-	background: url("../img/planets/planetFFFF00.png") no-repeat;
-	background-size: 50%;
-}
-.planet-image.planet-lightblue{
-	background: url("../img/planets/planet00FFFF.png") no-repeat;
-	background-size: 50%;
-}
-.planet-image.planet-grey{
-	background: url("../img/planets/planetC0C0C0.png") no-repeat;
-	background-size: 50%;
-}
-.planet-image.planet-white{
-	background: url("../img/planets/planetFFFFFF.png") no-repeat;
-	background-size: 50%;
 }
 /*
 	   /	/red,    green        blue      yellow   lightblue    rose       grey       white
