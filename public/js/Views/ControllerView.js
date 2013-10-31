@@ -14,8 +14,7 @@
             "click #start-game-button": "startGame",       
         },
 		initialize: function(options){			
-			$('head').append('<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />');
-			$('head').append('<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent;" />');
+
 			
 			this.model = options.model;
 			this.el.html(this.introTemplate);
