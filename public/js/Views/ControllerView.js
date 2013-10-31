@@ -13,15 +13,15 @@
 		events: {
             "click #start-game-button": "startGame",       
         },
-		initialize: function(options){
+		initialize: function(options){			
+			$('head').append('<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />');
+			$('head').append('<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent;" />');
+			
 			this.model = options.model;
 			this.el.html(this.introTemplate);
 			Simple.Events.on("controller:error-joining-room", this.errorJoiningRoom);			
 			Simple.Events.on("controller:joined-room", this.joiningRoom);
-			Simple.Events.on("controller:player-init", this.setPlayerSettings.bind(this));
-			
-			$('head').append('<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />');
-			$('head').append('<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent;" />');
+			Simple.Events.on("controller:player-init", this.setPlayerSettings.bind(this));			
 	
 		},
 		startGame: function(){
