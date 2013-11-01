@@ -49,7 +49,7 @@
 			if (this.gameStarted) {
 				var rotationGamma = (event.gamma/180)*Math.PI; 
 				var rotationBeta = (event.beta/180)*Math.PI;
-				/*var arctan = Math.atan2(rotationGamma, -rotationBeta);
+				var arctan = Math.atan2(rotationGamma, -rotationBeta);
 				var hypotenus = Math.sqrt((rotationBeta*rotationBeta) + (rotationGamma*rotationGamma));
 			
 				var angle = (arctan/Math.PI)*180;
@@ -62,9 +62,9 @@
 				hypotenus = hypotenus.toPrecision(3);
 				
 				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Angle: angle, Hypotenus: hypotenus});
-			*/
+			
 
-
+				/*
 				
 				var teta = Math.atan2(-Math.sin(rotationBeta)*Math.cos(rotationGamma), Math.sin(rotationGamma));
 				var hypotenus = Math.sqrt((Math.sin(rotationGamma)*Math.sin(rotationGamma)) + (Math.sin(rotationBeta)*Math.cos(rotationGamma)*Math.sin(rotationBeta)*Math.cos(rotationGamma)));
@@ -80,7 +80,7 @@
 				hypotenus = hypotenus.toPrecision(3)*30;
 				
 				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Angle: angle, Hypotenus: hypotenus, Beta: event.beta, Gamma: event.gamma});
-				
+				*/
 
 
 			}
