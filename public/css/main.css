@@ -20,30 +20,18 @@ p{
 
 .display-new-game-info{
 	color: #F5F5DC;
-	width: 600px;
 	text-align: center;
 	margin: auto;
 	font-size: 20px;
 	border: dashed;
+	padding: 10px;
 }
 
 .header{
 	font-family: galaxyFont;
 	color: #F5F5DC;
 	font-size: 45px;
-}
-
-.mobile-join-game-info{
-	margin-top: 40px;
-	text-align: center;
-	margin-left: 30%;
-	width: 100%;
-}
-
-.header-mobile{
-	font-family: galaxyFont;
-	color: #F5F5DC;
-	font-size: 25px;
+	margin-bottom: 20px;
 }
 
 .planet-image{
@@ -72,4 +60,10 @@ colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#C0C
 	text-shadow: 0 0 73px brown;
 	background-color: black;
 
+}
+
+.createdBy{
+	color: #F5F5DC;
+	float: left;
+	opacity: 0.5;
 }

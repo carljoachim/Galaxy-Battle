@@ -9,7 +9,7 @@
 
 		initialize: function(){
 			//socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
-			socket = io.connect("ec2-54-229-160-210.eu-west-1.compute.amazonaws.com", {port: 8000, transports: ["websocket"]});
+			socket = io.connect("54.229.160.210", {port: 8000, transports: ["websocket"]});
 			
 			this.setEventHandlers(socket);
 			this.socketId = socket.socket.sessionid;

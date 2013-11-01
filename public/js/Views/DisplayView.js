@@ -8,8 +8,11 @@
 		     "<h3 class='header'> Galaxy Battle </h3>" +
    		  	 "Choose the number of players </br></br> <input id='num-of-players' type='number' min='2' max='8' value='2' >" +
    		  	 "<button id='generate-game'> Generate game </button> </br></br>" + 
-   		  	 "Grab your phone. <br><br> " +	
+   		  	 "Grab your phone. <br> </br>" +	
    		     "Go to </br></br> www.galaxybattle.org </br></br> on your phone and type in the generated code. </br> </br> Get ready to defend your planet!" +
+   		     "</br> Defend your planet by avoiding the other players to push the star at your planet.</br>" + 
+   		     "</br> Your planet is the one with the same color as your spaceship." + 
+   		     "</br> Take a look at your mobile screen when the game starts to find your color." +
    		     "<h1 class='game-code'></h1><br>" +
    		     "<div class='players-status'></div>" +
    		     "<div class='players-list'></div>" +
@@ -234,7 +237,7 @@
 			Simple.Events.trigger("display:players-created", this.playersList);
 		},
 		playerMove: function(data){
-			
+			//console.log("Beta: " + data.Beta.toPrecision(3) + " - Gamma: " + data.Gamma.toPrecision(3) );
 			for(var i = 0; i < this.playersList.length; i++){
 				if(this.playersList[i].name() == data.PlayerId){
 					this.playersList[i].setVelocity("player move", data.Hypotenus, data.Angle);

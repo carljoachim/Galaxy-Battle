@@ -1,27 +1,42 @@
 (function(GB, Mustache){
 	GB.ControllerView = Simple.View.extend({
+		rotateMessageTemplate: 
+			"<div class='rotate-screen-message'> </div>",
 		introTemplate: 
 			"<div class='mobile-join-game-info'>" + 
 				"<h3 class='header-mobile'> Galaxy Battle </h3>" + 
-				"<p> Name </br> <input type='text' id='name' value='Player'> </br>" +
-				"<p> Game Code </br> <input type='text' id='game-code'> <br>" +
-				"</br><button id='start-game-button'> Start game</button>" +
-				"</br></br><div class='error-message'></div>" +
+				"<p> Name <input type='text' id='name' value='Player'> </br>" +
+				"<p> Game Code <input type='tel' id='game-code'> <br>" +
+				"<div id='start-game-button'> Start game</div>" +
+				"</br><div class='error-message'></div>" +
 			"</div>",
 		gameTemplate:
 			"<div class='controller-game-play-wrapper'></div>",
 		events: {
             "click #start-game-button": "startGame",       
         },
-		initialize: function(options){			
-
-			
+		initialize: function(options){						
 			this.model = options.model;
-			this.el.html(this.introTemplate);
+			this.el.html(this.rotateMessageTemplate);
+
 			Simple.Events.on("controller:error-joining-room", this.errorJoiningRoom);			
 			Simple.Events.on("controller:joined-room", this.joiningRoom);
 			Simple.Events.on("controller:player-init", this.setPlayerSettings.bind(this));			
-	
+					
+			if(window.orientation == -90){
+				this.el.html(this.introTemplate).hide().fadeIn('fast');;
+			}	
+			window.addEventListener("orientationchange", this.reloadView.bind(this));
+		
+		},
+		reloadView:function(){
+			if(!this.model.gameStarted){
+				if(window.orientation == -90){
+					this.el.html(this.introTemplate);
+				}else{
+					this.el.html(this.rotateMessageTemplate);
+				}		
+			}
 		},
 		startGame: function(){
 			var code = $("#game-code").val();
@@ -33,7 +48,7 @@
 			$(".error-message").html("Wrong code..");
 		},
 		joiningRoom: function(){
-			$(".error-message").html("Correct code:) </br></br> Waiting for other players..");
+			$(".error-message").html("Correct code:) </br> Waiting for other players..");
 			Simple.Events.trigger("controller:")
 		},
 		setPlayerSettings: function(data){

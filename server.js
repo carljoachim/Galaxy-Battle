@@ -2,8 +2,7 @@ var express = require("express");
 var app = express();
 app.use(express.static(__dirname + '/public'));
 
-var server = require('http').createServer(app).listen(8000);
-var io = require("socket.io").listen(server);
+var io = require("socket.io").listen(require('http').createServer(app).listen(8000));
 
 io.configure(function() {
 		io.set("transports", ["websocket"]);
@@ -21,11 +20,8 @@ io.sockets.on('connection', function(socket) {
 function setEventHandlers(socket){
 	socket.on("hostNewGame", onHostNewGame); 
 	socket.on("joinNewGame", onJoinNewGame);
-	//socket.on("startNewGame", onStartNewGame);
 	socket.on("movePlayer", onMovePlayer);
 	socket.on("playerCreated", onPlayerCreated);
-
-	socket.on("test", function(){console.log("test")});
 }
 
 function onHostNewGame(data){

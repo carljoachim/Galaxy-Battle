@@ -8,7 +8,9 @@
 	border: 1px #F5F5DC solid;
 }
 
-
+.game-wrapper{
+	width: 70%
+}
 .scoreBoardWrapper{
 	width: 35%;
 	float: left;

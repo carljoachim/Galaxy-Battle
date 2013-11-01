@@ -1,6 +1,54 @@
 .controller-game-play-wrapper{
 	height: 140px;
-	width: 140px;
-	margin-left: 50%;
-	margin-top: 50%;
+	width: 400px;
+	margin-left: 38%;
+	margin-top: 16%;
+
+}
+
+.rotate-screen-message{
+	color: white;
+	position: absolute;
+	z-index: 4;
+	width: 100%;
+	background: url(/img/iphone-rotate.png) no-repeat;
+	margin: 8%;
+	margin-top: 20%;
+	height: 100%;
+}
+
+
+.header-mobile{
+	font-family: galaxyFont;
+	color: #F5F5DC;
+	font-size: 25px;
+	margin-top: 0;
+}
+
+
+
+.mobile-join-game-info{
+	text-align: center;
+	width: 470px;
+	margin-left: 0%;
+}
+
+#name{
+	font-size: 16px;
+	margin-left: 8%;
+}
+
+#game-code{
+	font-size: 16px;
+}
+
+#start-game-button{
+	width: 150px;
+	font-size: 14px;
+	-webkit-border-radius: 14px;
+	font-family: galaxyFont;
+	box-shadow: 2px 1px 24px #FFf;
+	color: beige;
+	padding: 3px;
+	margin-left: 32%;
 }
