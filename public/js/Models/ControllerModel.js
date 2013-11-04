@@ -12,10 +12,11 @@
 		numberOfPlayers: 0,
 		initialize: function(){
 			//socket = io.connect("192.168.1.4", {port: 8000, transports: ["websocket"]});
-			//socket = io.connect("78.91.71.17", {port: 8000, transports: ["websocket"]});
+			//socket = io.connect("78.91.69.58", {port: 8000, transports: ["websocket"]});
 			socket = io.connect("54.229.160.210", {port: 8000, transports: ["websocket"]});
 			
 			this.setEventHandlers(socket);	
+
 
 			Simple.Events.on("controller:join-game", this.joinGame.bind(this));
 
@@ -47,12 +48,17 @@
 		},
 		onDeviceOrientation: function(event){
 			if (this.gameStarted) {
-				var rotationGamma = event.gamma; 
-				var rotationBeta = event.beta;
-				var arctan = Math.atan2(rotationGamma, -rotationBeta);
-				var hypotenus = Math.sqrt((rotationBeta*rotationBeta) + (rotationGamma*rotationGamma));
+				var rotationAlpha = (event.alpha/180)*Math.PI; 			
+				var rotationBeta = (event.beta/180)*Math.PI;
+				var rotationGamma = (event.gamma/180)*Math.PI; 
 			
-				var angle = (arctan/Math.PI)*180;
+				var x = Math.cos(rotationAlpha)*Math.sin(rotationGamma)+ Math.sin(rotationAlpha)*Math.sin(rotationBeta)*Math.cos(rotationGamma);
+				var y = Math.sin(rotationAlpha)*Math.sin(rotationGamma)- Math.cos(rotationAlpha)*Math.sin(rotationBeta)*Math.cos(rotationGamma);
+
+				var teta = Math.atan2(x, y);
+				var hypotenus = Math.sqrt(Math.pow(x,2) + Math.pow(y,2)) * 100;
+
+				var angle = (teta/Math.PI)*180;
 				angle += 90; // for sidelengs spillings
 				if(angle < 0){
 					angle = 360 + angle;
@@ -62,27 +68,7 @@
 				hypotenus = hypotenus.toPrecision(3);
 				
 				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Angle: angle, Hypotenus: hypotenus});
-			
-
-				/*
-				var rotationGamma = (event.gamma/180)*Math.PI; 
-				var rotationBeta = (event.beta/180)*Math.PI;
 				
-				var teta = Math.atan2(-Math.sin(rotationBeta)*Math.cos(rotationGamma), Math.sin(rotationGamma));
-				var hypotenus = Math.sqrt((Math.sin(rotationGamma)*Math.sin(rotationGamma)) + (Math.sin(rotationBeta)*Math.cos(rotationGamma)*Math.sin(rotationBeta)*Math.cos(rotationGamma)));
-
-				var angle = (teta/Math.PI)*180;
-				//angle += 180; // for sidelengs spillings
-				if(angle < 0){
-					angle = 360 + angle;
-				}
-
-
-				angle = angle.toPrecision(4);
-				hypotenus = hypotenus.toPrecision(3)*30;
-				
-				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Angle: angle, Hypotenus: hypotenus, Beta: event.beta, Gamma: event.gamma});
-				*/
 
 
 			}

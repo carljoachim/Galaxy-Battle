@@ -21,8 +21,13 @@
 
 			Simple.Events.on("controller:error-joining-room", this.errorJoiningRoom);			
 			Simple.Events.on("controller:joined-room", this.joiningRoom);
-			Simple.Events.on("controller:player-init", this.setPlayerSettings.bind(this));			
-					
+			Simple.Events.on("controller:player-init", this.setPlayerSettings.bind(this));		
+
+			$('head').append('<meta name=viewport content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />');
+			$('head').append('<meta name=apple-mobile-web-app-capable content=yes>');
+			$('head').append('<meta name=apple-mobile-web-app-status-bar-style content=black>');	
+			
+			window.scrollTo(0, 1);
 			if(window.orientation == -90){
 				this.el.html(this.introTemplate).hide().fadeIn('fast');;
 			}	
