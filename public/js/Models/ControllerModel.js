@@ -50,7 +50,7 @@
 				var rotationBeta = (event.beta/180)*Math.PI;
 				var rotationGamma = (event.gamma/180)*Math.PI; 
 
-				var x = Math.cos(rotationBeta) * Math.sin(rotationGamma) ;
+				var x = Math.cos(rotationBeta) * Math.sin(rotationGamma);
 				var y = -Math.sin(rotationBeta);
 				var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
 
