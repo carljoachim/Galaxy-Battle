@@ -25,15 +25,19 @@
 		<script src="/js/Views/ScoreBoardView.js"></script>
 		<script type="text/javascript">
 			$(function(){							
-				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){			
-					var controllerModel = new GB.ControllerModel();
-					var controllerView = new GB.ControllerView({ el: $(".gameArea"), model: controllerModel });
-				}else{
-					var displayModel = new GB.DisplayModel();
-					var displayView = new GB.DisplayView({ el: $(".gameArea"), model: displayModel });
-					var scoreBoardView = new GB.ScoreBoardView({ el: $(".scoreBoardWrapper"), model: displayModel });
-				}			
-		
+				if (window.WebSocket){
+					if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
+						var controllerModel = new GB.ControllerModel();
+						var controllerView = new GB.ControllerView({ el: $(".gameArea"), model: controllerModel });
+					}else{
+						var displayModel = new GB.DisplayModel();
+						var displayView = new GB.DisplayView({ el: $(".gameArea"), model: displayModel });
+						var scoreBoardView = new GB.ScoreBoardView({ el: $(".scoreBoardWrapper"), model: displayModel });
+					}			
+				}
+				else{
+					alert("Your browser does not support WebSocket. Please change browser if you want to play Galaxy Battle. Check out http://caniuse.com/#feat=websockets");
+				}		
 			});		
 		</script>
 
