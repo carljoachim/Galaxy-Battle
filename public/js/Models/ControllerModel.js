@@ -50,13 +50,9 @@
 				var rotationBeta = (event.beta/180)*Math.PI;
 				var rotationGamma = (event.gamma/180)*Math.PI; 
 
-				var x = Math.sin(rotationGamma);
-				var y = -Math.sin(rotationBeta)*Math.cos(rotationGamma);
-				var z = Math.cos(rotationBeta)*Math.cos(rotationGamma);
-
-				if(z <= 0 && (Math.abs(rotationGamma) >= Math.PI/2)){
-					y = -y ;
-				}
+				var x = Math.cos(rotationBeta) * Math.sin(rotationGamma) ;
+				var y = -Math.sin(rotationBeta);
+				var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
 
 				var theta = Math.atan2(x, y);
 				var phi = Math.atan2(Math.sqrt(Math.pow(x,2) + Math.pow(y,2)), z) * this.spaceshipSpeed;

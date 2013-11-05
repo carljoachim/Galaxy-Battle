@@ -44,6 +44,7 @@
 			}
 		},
 		startGame: function(){
+			$("#start-game-button").hide();
 			var code = $("#game-code").val();
 			var user = $("#name").val();
 			Simple.Events.trigger("controller:join-game", {GameCode: code, UserName: user});
