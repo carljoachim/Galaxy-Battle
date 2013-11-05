@@ -8,8 +8,8 @@
 		colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', '#C0C0C0', '#FFFFFF'],
 
 		initialize: function(){
-			socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
-			//socket = io.connect("54.229.160.210", {port: 8000, transports: ["websocket"]});
+			//socket = io.connect("localhost", {port: 8000, transports: ["websocket"]});
+			socket = io.connect("54.229.160.210", {port: 8000, transports: ["websocket"]});
 			
 			this.setEventHandlers(socket);
 			this.socketId = socket.socket.sessionid;

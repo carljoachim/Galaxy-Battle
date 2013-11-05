@@ -44,7 +44,6 @@
 			}
 		},
 		startGame: function(){
-			$("#start-game-button").hide();
 			var code = $("#game-code").val();
 			var user = $("#name").val();
 			Simple.Events.trigger("controller:join-game", {GameCode: code, UserName: user});
@@ -54,6 +53,7 @@
 			$(".error-message").html("Wrong code..");
 		},
 		joiningRoom: function(){
+			$("#start-game-button").hide();
 			$(".error-message").html("Correct code:) </br> Waiting for other players..");
 			Simple.Events.trigger("controller:")
 		},
