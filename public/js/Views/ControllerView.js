@@ -1,4 +1,4 @@
-(function(GB, Mustache){
+(function(GB){
 	GB.ControllerView = Simple.View.extend({
 		rotateMessageTemplate: 
 			"<div class='rotate-screen-message'> </div>",
@@ -58,8 +58,7 @@
 			Simple.Events.trigger("controller:")
 		},
 		setPlayerSettings: function(data){
-			var html = Mustache.to_html(this.gameTemplate, data);
-			this.el.html(html);
+			this.el.html(this.gameTemplate);
 			for(var i = 0; i < data.length; i++){
 				if(data[i].PlayerId == data[i].SocketId){
 					this.el.find(".controller-game-play-wrapper").css("background", "url(../img/spacecrafts/spacecraft" + data[i].PlayerColor.replace('#','') + ".png) no-repeat");
@@ -70,4 +69,4 @@
 		}
 
 	});
-})(window.GB = window.GB || {}, Mustache);
+})(window.GB = window.GB || {});

@@ -94,8 +94,8 @@
 			        color: players[i].Color,
 			        radius: planetRadius,
 			        fixedRotation: true,
-			        friction: 9999999,
-			        density: 99999,
+			        friction: 9999,
+			        density: 9999,
 			        image: '/img/planets/planet' + colorStrippedForHash + '.png',
 			        imageOffsetX: -1.8,
 			        imageOffsetY: -1.8,
@@ -210,8 +210,6 @@
 						Simple.Events.trigger("display:point-update", planet);
 					}
 				});
-
-
 			}
 		},
 		initiatePlayers: function(players){
@@ -236,8 +234,7 @@
 			}	
 			Simple.Events.trigger("display:players-created", this.playersList);
 		},
-		playerMove: function(data){			
-			
+		playerMove: function(data){		
 			for(var i = 0; i < this.playersList.length; i++){
 				if(this.playersList[i].name() == data.PlayerId){
 					this.playersList[i].setVelocity("player move", data.Phi, data.Angle);
