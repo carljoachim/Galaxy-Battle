@@ -38,34 +38,59 @@
 		},
 		onDeviceOrientation: function(event){
 			if (this.gameStarted) {
-				var betaAngle = event.beta.toPrecision(3);
-				var gammaAngle = event.gamma.toPrecision(3);
+				// var betaAngle = event.beta.toPrecision(3);
+				// var gammaAngle = event.gamma.toPrecision(3);
 
-				var rotationBeta = (event.beta/180)*Math.PI;
-				var rotationGamma = (event.gamma/180)*Math.PI; 
+				// var rotationBeta = (event.beta/180)*Math.PI;
+				// var rotationGamma = (event.gamma/180)*Math.PI; 
 
 				// var x = Math.cos(rotationBeta) * Math.sin(rotationGamma);
 				// var y = -Math.sin(rotationBeta);
 				// var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
 
-				var x = -Math.sin(rotationBeta);
-				var y = -Math.cos(rotationBeta)*Math.sin(rotationGamma);
-				var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
+				// // var x = -Math.sin(rotationBeta);
+				// // var y = -Math.cos(rotationBeta)*Math.sin(rotationGamma);
+				// // var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
 
-				var theta = Math.atan2(x, y);
-				var phi = Math.atan2(Math.sqrt(Math.pow(x,2) + Math.pow(y,2)), z) * this.spaceshipSpeed;
+				// var theta = Math.atan2(x, y);
+				// var phi = Math.atan2(Math.sqrt(Math.pow(x,2) + Math.pow(y,2)), z) * this.spaceshipSpeed;
 
-				var angle = (theta/Math.PI)*180;
-				//angle += 90; // for sidelengs spillings
-				if(angle < 0){
-					angle = 360 + angle;
-				}
+				// var angle = (theta/Math.PI)*180;
+				// angle += 90; // for sidelengs spillings
+				// if(angle < 0){
+				// 	angle = 360 + angle;
+				// }
 
-				angle = angle.toPrecision(4);
-				phi = phi.toPrecision(3);
+				// angle = angle.toPrecision(4);
+				// phi = phi.toPrecision(3);
 				
-				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Angle: angle, Phi: phi});
+				// socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Angle: angle, Phi: phi});
 							
+				//var rotationBeta = (event.beta/180)*Math.PI;
+				//var rotationGamma = (event.gamma/180)*Math.PI; 
+
+				// var x = Math.cos(rotationBeta) * Math.sin(rotationGamma);
+				// var y = -Math.sin(rotationBeta);
+				// var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
+
+				// // var x = -Math.sin(rotationBeta);
+				// // var y = -Math.cos(rotationBeta)*Math.sin(rotationGamma);
+				// // var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
+
+				// var theta = Math.atan2(x, y);
+				// var phi = Math.atan2(Math.sqrt(Math.pow(x,2) + Math.pow(y,2)), z) * this.spaceshipSpeed;
+
+				// var angle = (theta/Math.PI)*180;
+				// angle += 90; // for sidelengs spillings
+				// if(angle < 0){
+				// 	angle = 360 + angle;
+				// }
+
+				// angle = angle.toPrecision(4);
+				// phi = phi.toPrecision(3);
+
+				
+				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Beta: event.beta, Gamma: event.gamma});
 			}
 		}
 
