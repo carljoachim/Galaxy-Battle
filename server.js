@@ -58,7 +58,6 @@ function onMovePlayer(data){
 	if(angle < 0){
 		angle = 360 + angle;
 	}
-	console.log(data);
 
 	angle = angle.toPrecision(4);
 	phi = phi.toPrecision(3);

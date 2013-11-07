@@ -235,6 +235,7 @@
 			Simple.Events.trigger("display:players-created", this.playersList);
 		},
 		playerMove: function(data){		
+		console.log(data);
 		for(var i = 0; i < this.playersList.length; i++){
 				if(this.playersList[i].name() == data.PlayerId){
 					this.playersList[i].setVelocity("player move", data.Phi, data.Angle);
