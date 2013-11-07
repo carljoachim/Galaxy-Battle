@@ -46,10 +46,6 @@ function onMovePlayer(data){
 	var rotationBeta = (data.Beta/180)*Math.PI;
 	var rotationGamma = (data.Gamma/180)*Math.PI; 
 
-	// var x = Math.cos(rotationBeta) * Math.sin(rotationGamma);
-	// var y = -Math.sin(rotationBeta);
-	// var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
-
 	var x = -Math.sin(rotationBeta);
 	var y = -Math.cos(rotationBeta)*Math.sin(rotationGamma);
 	var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
@@ -58,7 +54,6 @@ function onMovePlayer(data){
 	var phi = Math.atan2(Math.sqrt(Math.pow(x,2) + Math.pow(y,2)), z) * 65;
 
 	var angle = (theta/Math.PI)*180;
-	//angle += 90; // for sidelengs spillings
 	if(angle < 0){
 		angle = 360 + angle;
 	}

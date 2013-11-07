@@ -32,7 +32,6 @@
 			if(this.numberOfPlayers != numberOfPlayers){
 				this.numberOfPlayers = numberOfPlayers;
 				this.gameCode = (""+Math.random()).substring(2,4);
-				//this.gameCode = 7;
 				Simple.Events.trigger("display:game-generated", {GameCode: this.gameCode, NumberOfPlayers: this.numberOfPlayers});		
 				socket.emit('hostNewGame', {GameCode: this.gameCode, NumberOfPlayers: this.numberOfPlayers});
 			}
@@ -56,7 +55,6 @@
 						this.players[i].Color = this.colors[i];
 					}
 					Simple.Events.trigger("display:start-game", this.players);
-					//socket.emit('startNewGame', {GameCode: this.gameCode});
 				}
 			}
 		}
