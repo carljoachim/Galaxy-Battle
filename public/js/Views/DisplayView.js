@@ -236,10 +236,7 @@
 		},
 		playerMove: function(data){		
 
-			console.log(parseInt(data.Phi));
-			console.log(data.Phi);
-
-		for(var i = 0; i < this.playersList.length; i++){
+			for(var i = 0; i < this.playersList.length; i++){
 				if(this.playersList[i].name() == data.PlayerId){
 					this.playersList[i].setVelocity("player move", parseInt(data.Phi), parseInt(data.Angle));
 				}

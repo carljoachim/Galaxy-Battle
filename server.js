@@ -62,7 +62,7 @@ function onMovePlayer(data){
 	angle = angle.toPrecision(4);
 	phi = phi.toPrecision(3);
 
-	io.sockets.in(data.GameCode.toString()).emit('playerMove', {Angle: angle, Phi: phi});
+	io.sockets.in(data.GameCode.toString()).emit('playerMove', {PlayerId: data.PlayerId, Angle: angle, Phi: phi});
 }
 
 function onPlayerCreated(data){
