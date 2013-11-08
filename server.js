@@ -42,26 +42,10 @@ function onJoinNewGame(data){
 	}
  }
 
+
 function onMovePlayer(data){
-	var rotationBeta = (data.Beta/180)*Math.PI;
-	var rotationGamma = (data.Gamma/180)*Math.PI; 
+	io.sockets.in(data.GameCode.toString()).emit('playerMove', data);
 
-	var x = -Math.sin(rotationBeta);
-	var y = -Math.cos(rotationBeta)*Math.sin(rotationGamma);
-	var z = Math.cos(rotationBeta) * Math.cos(rotationGamma);
-
-	var theta = Math.atan2(x, y);
-	var phi = Math.atan2(Math.sqrt(Math.pow(x,2) + Math.pow(y,2)), z) * 65;
-
-	var angle = (theta/Math.PI)*180;
-	if(angle < 0){
-		angle = 360 + angle;
-	}
-
-	angle = angle.toPrecision(4);
-	phi = phi.toPrecision(3);
-
-	io.sockets.in(data.GameCode.toString()).emit('playerMove', {PlayerId: data.PlayerId, Angle: angle, Phi: phi});
 }
 
 function onPlayerCreated(data){
