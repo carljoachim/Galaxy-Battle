@@ -13,7 +13,6 @@
 			this.setEventHandlers(socket);	
 			Simple.Events.on("controller:join-game", this.joinGame.bind(this));		
 			window.addEventListener("deviceorientation", this.onDeviceOrientation.bind(this));	
-			window.addEventListener("deviceorientation", this.onDeviceOrientation.bind(this));	
 		},
 
 		setEventHandlers: function(socket){
