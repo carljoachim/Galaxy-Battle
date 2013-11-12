@@ -44,8 +44,8 @@
 			if (this.gameStarted) {	
 				var rotationBeta = (event.beta/180)*Math.PI;
 				var rotationGamma = (event.gamma/180)*Math.PI; 
-
-				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Beta: rotationBeta, Gamma: rotationGamma});
+				var time = Date.now();
+				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Beta: rotationBeta, Gamma: rotationGamma, Time: time});
 			}
 		}		
 	});
