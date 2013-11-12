@@ -71,24 +71,24 @@ function onMovePlayer(data){
 					if(angle < 0){					
 						angle = 360 + angle;
 					}	
-					if(playerValues.lastAngle == -1){
-						playerValues.lastAngle = angle;
-						playerValues.lastX = x;
-						playerValues.lastZ = z;
+					// if(playerValues.lastAngle == -1){
+					// 	playerValues.lastAngle = angle;
+					// 	playerValues.lastX = x;
+					// 	playerValues.lastZ = z;
 
-					}else if(mathSign(x) != mathSign(playerValues.lastX) && mathSign(z) != mathSign(playerValues.lastZ)){
-						angle = playerValues.lastAngle;
-						x = playerValues.lastX;
-						z = playerValues.lastZ;
-					}
+					// }else if(mathSign(x) != mathSign(playerValues.lastX) && mathSign(z) != mathSign(playerValues.lastZ)){
+					// 	angle = playerValues.lastAngle;
+					// 	x = playerValues.lastX;
+					// 	z = playerValues.lastZ;
+					// }
 
 					phi *= gameSpeed;			
 			
 					io.sockets.in(data.GameCode.toString()).emit('playerMove', {GameCode: data.GameCode, PlayerId: data.PlayerId, Angle: angle, Phi: phi});
 
-					playerValues.lastAngle = angle;	
-					playerValues.lastX = x;
-					playerValues.lastZ = z;
+					// playerValues.lastAngle = angle;	
+					// playerValues.lastX = x;
+					// playerValues.lastZ = z;
 				}
 			};
 		}
