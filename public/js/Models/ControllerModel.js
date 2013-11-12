@@ -13,6 +13,7 @@
 			this.setEventHandlers(socket);	
 			Simple.Events.on("controller:join-game", this.joinGame.bind(this));		
 			window.addEventListener("deviceorientation", this.onDeviceOrientation.bind(this));	
+			window.addEventListener("deviceorientation", this.onDeviceOrientation.bind(this));	
 		},
 
 		setEventHandlers: function(socket){
@@ -44,8 +45,7 @@
 			if (this.gameStarted) {	
 				var rotationBeta = (event.beta/180)*Math.PI;
 				var rotationGamma = (event.gamma/180)*Math.PI; 
-				var time = Date.now();
-				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Beta: rotationBeta, Gamma: rotationGamma, Time: time});
+				socket.emit('movePlayer', {GameCode: this.gameCode, PlayerId: this.playerId, Beta: rotationBeta, Gamma: rotationGamma});
 			}
 		}		
 	});

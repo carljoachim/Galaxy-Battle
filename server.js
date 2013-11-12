@@ -42,7 +42,6 @@ function onJoinNewGame(data){
 }
 
 var gameSpeed = 75;
-var time = 0;
 function onMovePlayer(data){
 	var room = this.manager.rooms["/" + data.GameCode];
 	
@@ -50,8 +49,6 @@ function onMovePlayer(data){
 		if(room[i].PlayerValues != undefined && data.PlayerId == room[i].PlayerValues.id){			
 			var playerValues = room[i].PlayerValues;
 
-			console.log(data.Time - time);
-			time = data.Time;
 			var x = -Math.sin(data.Beta)*Math.cos(data.Gamma);	
 			var y = -Math.sin(data.Gamma);
 			var z = Math.cos(data.Beta)*Math.cos(data.Gamma);
