@@ -1,14 +1,11 @@
-(function(GB, Mustache){
+(function(GB){
 	GB.ScoreBoardView = Simple.View.extend({
-		events: {
-
-        },
-        scoreBoardTemplate: "<div class='scoreBoard'> " +
+	      scoreBoardTemplate: "<div class='scoreBoard'> " +
         					"<h1 class='header'> Galaxy Battle </h1> <br> " + 					
         					"</div>",
 
         initialize: function(options){       	
-			this.model = options.model;			
+			    this.model = options.model;			
         	Simple.Events.on("display:start-game", this.showScoreBoard.bind(this));
         	Simple.Events.on("display:point-update", this.updateScoreBoard)
         },
@@ -46,4 +43,4 @@
            	  
 
 	});
-})(window.GB = window.GB || {}, Mustache);
+})(window.GB = window.GB || {});

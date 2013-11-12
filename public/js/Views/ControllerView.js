@@ -55,7 +55,6 @@
 		joiningRoom: function(){
 			$("#start-game-button").hide();
 			$(".error-message").html("Correct code:) </br> Waiting for other players..");
-			Simple.Events.trigger("controller:")
 		},
 		setPlayerSettings: function(data){
 			this.el.html(this.gameTemplate);

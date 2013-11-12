@@ -1,4 +1,4 @@
-(function(GB, Mustache){
+(function(GB){
 	GB.DisplayView = Simple.View.extend({
 		events: {
             "click #generate-game": "createGame",       
@@ -265,4 +265,4 @@
 		}
 
 	});
-})(window.GB = window.GB || {}, Mustache);
+})(window.GB = window.GB || {});

@@ -19,14 +19,11 @@
 		},
 
 		setEventHandlers: function(socket){			
-			socket.on('connect', this.onConnected);
 			socket.on('playerJoinedRoom', this.onPlayerJoinedRoom.bind(this));
-			socket.on('playerMove', function(data){ Simple.Events.trigger("display:player-move", data); });
-		},
-
-		onConnected: function(){
-			console.log("Connected!");
-		},
+			socket.on('playerMove', function(data){ 
+				Simple.Events.trigger("display:player-move", data); 
+			});
+		},		
 
 		generateGame: function(numberOfPlayers){
 			if(this.numberOfPlayers != numberOfPlayers){
