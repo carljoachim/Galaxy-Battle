@@ -31,6 +31,7 @@ function onHostNewGame(data){
 	io.sockets.in(data.GameCode.toString()).emit('newGameHosted', data);
 
 	playersList.push({room: data.GameCode, players: []});
+	console.log(playersList);
 }
 
 function onJoinNewGame(data){
