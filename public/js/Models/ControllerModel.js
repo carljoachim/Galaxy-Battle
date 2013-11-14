@@ -6,8 +6,6 @@
 		players: [],
 		numberOfPlayers: 0,
 		initialize: function(){
-			//socket = io.connect("192.168.1.2", {port: 8000, transports: ["websocket"]});
-			//socket = io.connect("78.91.69.82", {port: 8000, transports: ["websocket"]});
 			socket = io.connect("54.229.160.210", {port: 8000, transports: ["websocket"]});
 			
 			this.setEventHandlers(socket);	
